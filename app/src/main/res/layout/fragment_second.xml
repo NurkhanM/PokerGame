@@ -15,6 +15,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/backStack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,6 +38,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/btnMusic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_music"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -39,12 +59,90 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginHorizontal="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:src="@drawable/res_center_card"
+                app:layout_constraintBottom_toTopOf="@+id/dealerCardsLinear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bank:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/betBank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_coin"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:src="@drawable/res_center_card"
+                app:layout_constraintBottom_toTopOf="@+id/dealerCardsLinear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balance:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/betBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomLinear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,136 +165,210 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/dealerCardsLinear"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
+                android:layout_marginBottom="70dp"
                 android:src="@drawable/res_center_card"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tableCardsLinear"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
                     android:id="@+id/compCard1"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/compCard2"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/compCard3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/compCard4"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/compCard5"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:src="@drawable/res_center_card"
+                app:layout_constraintBottom_toTopOf="@+id/dealerCardsLinear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Opponent:"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/dealerBet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/tableCardsLinear"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/res_center_card"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/card1"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/card2"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/card3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/card4"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/card5"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
 
 
             </LinearLayout>
-
 
 
             <LinearLayout
+                android:id="@+id/playerCardsLinear"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
                 android:layout_marginBottom="120dp"
                 android:src="@drawable/res_center_card"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableCardsLinear">
 
                 <ImageView
                     android:id="@+id/myCard1"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/myCard2"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/myCard3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/myCard4"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
+
                 <ImageView
                     android:id="@+id/myCard5"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/res_regtangle"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/res_regtangle" />
 
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:src="@drawable/res_center_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playerCardsLinear">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You:"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/playerBet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

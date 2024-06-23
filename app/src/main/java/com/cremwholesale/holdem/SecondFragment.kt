@@ -3,6 +3,7 @@ package com.cremwholesale.holdem
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.VectorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +20,11 @@ import kotlinx.coroutines.*
 class SecondFragment : Fragment() {
 
     private val TAG = "TEST-->"
+
+    private var scoreBetAll = 0
+    private var scoreBetPlayer = 20
+    private var scoreBetDealer = 20
+
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
@@ -26,6 +32,8 @@ class SecondFragment : Fragment() {
     private lateinit var playerCards: Array<ImageView>
     private lateinit var dealerCards: Array<ImageView>
     private lateinit var tableCards: Array<ImageView>
+
+    private var musicOn = true
 
     private val cards = mutableListOf(
         R.drawable.ac, R.drawable.ad, R.drawable.ah, R.drawable.aces,
@@ -58,6 +66,8 @@ class SecondFragment : Fragment() {
         tableCards = arrayOf(binding.card1, binding.card2, binding.card3, binding.card4, binding.card5)
         playerCards = arrayOf(binding.myCard1, binding.myCard2)
 
+
+
         startGame()
 
         binding.btnDeal.setOnClickListener {
@@ -65,8 +75,28 @@ class SecondFragment : Fragment() {
         }
 
         binding.checkButton.setOnClickListener {
+            it.isEnabled = false
             checkNext()
+            it.isEnabled = true
         }
+
+        binding.foldButton.setOnClickListener {
+            resetGame()
+        }
+
+        binding.backStack.setOnClickListener {
+            activity?.onBackPressed()
+        }
+
+        binding.btnMusic.setOnClickListener {
+            musicOn = !musicOn
+            updateMusicButton(binding.btnMusic)
+        }
+    }
+
+
+    private fun updateMusicButton(imageView: ImageView) {
+        if (musicOn) imageView.setImageResource(R.drawable.ic_music) else imageView.setImageResource(R.drawable.ic_music_off)
     }
 
     private fun determineWinner() {
@@ -108,10 +138,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun cardFromImageView(imageView: ImageView): Card {
-        val cardDrawable = imageView.drawable
-        if (cardDrawable == null) {
-            throw IllegalArgumentException("ImageView does not have a drawable")
-        }
+        val cardDrawable = imageView.drawable ?: throw IllegalArgumentException("ImageView does not have a drawable")
 
         val cardWeight = getCardWeightFromResource(cardDrawable)
         val cardSuit = getCardSuitFromResource(cardDrawable)
@@ -249,6 +276,15 @@ class SecondFragment : Fragment() {
         }
     }
 
+
+    private fun getResourceNameFromDrawable(drawable: Drawable): String {
+        return when (drawable) {
+            is BitmapDrawable -> "bitmap"
+            is VectorDrawable -> "vector"
+            else -> "unknown_drawable"
+        }
+    }
+
     private fun Drawable.isEqualTo(context: Context, resId: Int): Boolean {
         val resDrawable = ContextCompat.getDrawable(context, resId) ?: return false
         if (this is BitmapDrawable && resDrawable is BitmapDrawable) {
@@ -291,20 +327,56 @@ class SecondFragment : Fragment() {
                     dealCardTo(tableCards[i])
                 }
             }
+            // Действия, которые нужно выполнить после завершения цикла
+            withContext(Dispatchers.Main) {
+                showToast("Game")
+            binding.checkButton.isEnabled = true
+            binding.betButton.isEnabled = true
+            binding.foldButton.isEnabled = true
+            binding.btnDeal.isEnabled = true
+            }
         }
     }
 
+
+
     private fun startGame() {
+        binding.checkButton.isEnabled = false
+        binding.betButton.isEnabled = false
+        binding.foldButton.isEnabled = false
+        binding.btnDeal.isEnabled = false
         cards.shuffle()
         gameStateCurrent = 4
         clearAllCards()
         distribution()
+
     }
 
     private fun clearAllCards() {
         dealerCards.forEach { it.setImageResource(R.drawable.card) }
         playerCards.forEach { it.setImageResource(R.drawable.card) }
         tableCards.forEach { it.setImageResource(R.drawable.card) }
+    }
+
+    private fun resetGame() {
+        // Reset game state variables
+        gameStateCurrent = 4
+
+        // Clear cards from ImageViews
+        for (card in playerCards) {
+            card.setImageResource(R.drawable.card)
+        }
+        for (card in dealerCards) {
+            card.setImageResource(R.drawable.card)
+        }
+        for (card in tableCards) {
+            card.setImageResource(R.drawable.card)
+        }
+
+        // Clear other game state if necessary
+
+        // Start a new game
+        startGame()
     }
 
     override fun onDestroyView() {
