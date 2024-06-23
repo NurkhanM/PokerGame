@@ -3,13 +3,13 @@ package com.cremwholesale.holdem
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.VectorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -24,6 +24,9 @@ class SecondFragment : Fragment() {
     private var scoreBetAll = 0
     private var scoreBetPlayer = 20
     private var scoreBetDealer = 20
+    private var balance = 500
+
+//    private var progression = 1
 
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
@@ -59,29 +62,64 @@ class SecondFragment : Fragment() {
         return binding.root
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dealerCards = arrayOf(binding.compCard1, binding.compCard2)
-        tableCards = arrayOf(binding.card1, binding.card2, binding.card3, binding.card4, binding.card5)
+        tableCards =
+            arrayOf(binding.card1, binding.card2, binding.card3, binding.card4, binding.card5)
         playerCards = arrayOf(binding.myCard1, binding.myCard2)
+
+        binding.betBank.text = "0"
+        binding.betBalance.text = balance.toString()
+        binding.dealerBet.text = "0"
+        binding.playerBet.text = "0"
 
 
 
         startGame()
 
+        binding.betButton.setOnClickListener {
+            if (balance < 20){
+                showToast("UPS Balance")
+            }else{
+                betScore(binding.playerBet, 1)
+            }
+
+        }
+
         binding.btnDeal.setOnClickListener {
-            determineWinner()
+//            determineWinner()
         }
 
         binding.checkButton.setOnClickListener {
-            it.isEnabled = false
-            checkNext()
-            it.isEnabled = true
+            if (gameStateCurrent >= 6) {
+                determineWinner()
+            }else{
+                binding.progressComp.visibility = View.VISIBLE
+                binding.checkButton.isEnabled = false
+                binding.betButton.isEnabled = false
+                binding.foldButton.isEnabled = false
+                binding.btnDeal.isEnabled = false
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    delay(3000)
+                    checkNext(1)
+                    computer(binding.dealerBet)
+                    binding.progressComp.visibility = View.INVISIBLE
+                    binding.checkButton.isEnabled = true
+                    binding.betButton.isEnabled = true
+                    binding.foldButton.isEnabled = true
+                    binding.btnDeal.isEnabled = true
+                }
+            }
+
         }
 
+
         binding.foldButton.setOnClickListener {
-            resetGame()
+            resetGame(1)
         }
 
         binding.backStack.setOnClickListener {
@@ -94,22 +132,103 @@ class SecondFragment : Fragment() {
         }
     }
 
+    private fun computer(view: TextView) {
+        val methods = listOf(
+            { checkNext(0) },
+            { resetGame(0) },
+            { betScore(view, 0) }
+        )
+
+        val randomMethod = methods.random()
+        randomMethod()
+    }
+
+    private fun computer2(view: TextView) {
+        val methods = listOf(
+            { resetGame(0) },
+            { betScore(view, 0) }
+        )
+
+        val randomMethod = methods.random()
+        randomMethod()
+    }
+
+    private fun betScore(view: TextView, int: Int) {
+        Log.d(TAG, "betScore: $gameStateCurrent")
+        if (gameStateCurrent >= 6) {
+            determineWinner()
+        }else{
+            if (int != 0){
+                if (view == binding.dealerBet) {
+                    scoreBetDealer += 20
+                    binding.dealerBet.text = scoreBetDealer.toString()
+                    showToast("BET")
+                } else {
+                    scoreBetPlayer += 20
+                    binding.playerBet.text = scoreBetPlayer.toString()
+
+                }
+
+                balance -= 20
+                binding.betBalance.text = balance.toString()
+
+                scoreBetAll = binding.dealerBet.text.toString().toInt() + binding.playerBet.text.toString().toInt()
+                binding.betBank.text = scoreBetAll.toString()
+
+                binding.progressComp.visibility = View.VISIBLE
+                binding.checkButton.isEnabled = false
+                binding.betButton.isEnabled = false
+                binding.foldButton.isEnabled = false
+                binding.btnDeal.isEnabled = false
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    delay(3000)
+                    checkNext(1)
+                    computer2(binding.dealerBet)
+                    binding.progressComp.visibility = View.INVISIBLE
+                    binding.checkButton.isEnabled = true
+                    binding.betButton.isEnabled = true
+                    binding.foldButton.isEnabled = true
+                    binding.btnDeal.isEnabled = true
+                }
+            }else{
+                binding.dealerBet.text = binding.playerBet.text.toString()
+                scoreBetAll = binding.dealerBet.text.toString().toInt() + binding.playerBet.text.toString().toInt()
+                binding.betBank.text = scoreBetAll.toString()
+            }
+
+
+        }
+
+
+
+
+    }
+
 
     private fun updateMusicButton(imageView: ImageView) {
-        if (musicOn) imageView.setImageResource(R.drawable.ic_music) else imageView.setImageResource(R.drawable.ic_music_off)
+        if (musicOn) imageView.setImageResource(R.drawable.ic_music) else imageView.setImageResource(
+            R.drawable.ic_music_off
+        )
     }
 
     private fun determineWinner() {
-        val playerHand = evaluateHand(playerCards.map { cardFromImageView(it) } + tableCards.map { cardFromImageView(it) })
-        val dealerHand = evaluateHand(dealerCards.map { cardFromImageView(it) } + tableCards.map { cardFromImageView(it) })
+        val playerHand = evaluateHand(playerCards.map { cardFromImageView(it) } + tableCards.map {
+            cardFromImageView(it)
+        })
+        val dealerHand = evaluateHand(dealerCards.map { cardFromImageView(it) } + tableCards.map {
+            cardFromImageView(it)
+        })
 
         val result = compareHands(playerHand, dealerHand)
 
         Log.d(TAG, "determineWinner: $result")
         when (result) {
+            2 -> showToast("Игрок вы")
             1 -> showToast("Игрок выиграл!")
             -1 -> showToast("Дилер выиграл!")
             0 -> showToast("Ничья!")
+            -2 -> showToast("Дилер выи")
         }
     }
 
@@ -129,7 +248,10 @@ class SecondFragment : Fragment() {
         }
     }
 
-    private fun compareHands(playerHand: HandEvaluationResult, dealerHand: HandEvaluationResult): Int {
+    private fun compareHands(
+        playerHand: HandEvaluationResult,
+        dealerHand: HandEvaluationResult
+    ): Int {
         return playerHand.compareTo(dealerHand)
     }
 
@@ -138,7 +260,8 @@ class SecondFragment : Fragment() {
     }
 
     private fun cardFromImageView(imageView: ImageView): Card {
-        val cardDrawable = imageView.drawable ?: throw IllegalArgumentException("ImageView does not have a drawable")
+        val cardDrawable = imageView.drawable
+            ?: throw IllegalArgumentException("ImageView does not have a drawable")
 
         val cardWeight = getCardWeightFromResource(cardDrawable)
         val cardSuit = getCardSuitFromResource(cardDrawable)
@@ -276,15 +399,6 @@ class SecondFragment : Fragment() {
         }
     }
 
-
-    private fun getResourceNameFromDrawable(drawable: Drawable): String {
-        return when (drawable) {
-            is BitmapDrawable -> "bitmap"
-            is VectorDrawable -> "vector"
-            else -> "unknown_drawable"
-        }
-    }
-
     private fun Drawable.isEqualTo(context: Context, resId: Int): Boolean {
         val resDrawable = ContextCompat.getDrawable(context, resId) ?: return false
         if (this is BitmapDrawable && resDrawable is BitmapDrawable) {
@@ -295,12 +409,19 @@ class SecondFragment : Fragment() {
         return false
     }
 
-    private fun checkNext() {
-        when (gameStateCurrent) {
-            4 -> dealCardTo(tableCards[3])
-            5 -> dealCardTo(tableCards[4])
+
+    private fun checkNext(int: Int) {
+        if (int != 0){
+            when (gameStateCurrent) {
+                4 -> dealCardTo(tableCards[3])
+                5 -> dealCardTo(tableCards[4])
+            }
+            gameStateCurrent++
+        }else{
+            showToast("CHECK")
         }
-        gameStateCurrent++
+        scoreBetAll = binding.dealerBet.text.toString().toInt() + binding.playerBet.text.toString().toInt()
+        binding.betBank.text = scoreBetAll.toString()
     }
 
     private fun distribution() {
@@ -327,17 +448,15 @@ class SecondFragment : Fragment() {
                     dealCardTo(tableCards[i])
                 }
             }
-            // Действия, которые нужно выполнить после завершения цикла
             withContext(Dispatchers.Main) {
-                showToast("Game")
-            binding.checkButton.isEnabled = true
-            binding.betButton.isEnabled = true
-            binding.foldButton.isEnabled = true
-            binding.btnDeal.isEnabled = true
+                binding.checkButton.isEnabled = true
+                binding.betButton.isEnabled = true
+                binding.foldButton.isEnabled = true
+                binding.btnDeal.isEnabled = true
+
             }
         }
     }
-
 
 
     private fun startGame() {
@@ -349,6 +468,10 @@ class SecondFragment : Fragment() {
         gameStateCurrent = 4
         clearAllCards()
         distribution()
+        balance -= 20
+        binding.betBalance.text = balance.toString()
+        binding.dealerBet.text = scoreBetDealer.toString()
+        binding.playerBet.text = scoreBetPlayer.toString()
 
     }
 
@@ -358,7 +481,10 @@ class SecondFragment : Fragment() {
         tableCards.forEach { it.setImageResource(R.drawable.card) }
     }
 
-    private fun resetGame() {
+    private fun resetGame(int: Int) {
+        if (int == 0){
+            balance += scoreBetAll
+        }
         // Reset game state variables
         gameStateCurrent = 4
 
@@ -372,10 +498,16 @@ class SecondFragment : Fragment() {
         for (card in tableCards) {
             card.setImageResource(R.drawable.card)
         }
+        showToast("FOLD")
 
-        // Clear other game state if necessary
+        binding.betBank.text = "0"
+        binding.dealerBet.text = "0"
+        binding.playerBet.text = "0"
+        gameStateCurrent = 3
+        scoreBetPlayer = 20
+        scoreBetDealer = 20
+        scoreBetAll = 0
 
-        // Start a new game
         startGame()
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -14,15 +14,127 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_tipsOneFragment"
+            app:destination="@id/tipsOneFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.cremwholesale.holdem.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        tools:layout="@layout/fragment_second"/>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="keep.brazino.windows.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_splashFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_oneFragment"
+            app:destination="@id/oneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oneFragment"
+        android:name="com.cremwholesale.holdem.welcome.OneFragment"
+        android:label="fragment_one"
+        tools:layout="@layout/fragment_one" >
+        <action
+            android:id="@+id/action_oneFragment_to_twoFragment"
+            app:destination="@id/twoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/twoFragment"
+        android:name="com.cremwholesale.holdem.welcome.TwoFragment"
+        android:label="fragment_two"
+        tools:layout="@layout/fragment_two" >
+        <action
+            android:id="@+id/action_twoFragment_to_threeFragment"
+            app:destination="@id/threeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/threeFragment"
+        android:name="com.cremwholesale.holdem.welcome.ThreeFragment"
+        android:label="fragment_three"
+        tools:layout="@layout/fragment_three" >
+        <action
+            android:id="@+id/action_threeFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/tipsOneFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsOneFragment"
+        android:label="TipsOneFragment" >
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsTwoFragment"
+            app:destination="@id/tipsTwoFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsThreeFragment"
+            app:destination="@id/tipsThreeFragment2" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsFourFragment"
+            app:destination="@id/tipsFourFragment2" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsFiveFragment"
+            app:destination="@id/tipsFiveFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsSixFragment"
+            app:destination="@id/tipsSixFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsSevenFragment"
+            app:destination="@id/tipsSevenFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsEightFragment"
+            app:destination="@id/tipsEightFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsNineFragment"
+            app:destination="@id/tipsNineFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsTenFragment"
+            app:destination="@id/tipsTenFragment" />
+        <action
+            android:id="@+id/action_tipsOneFragment_to_tipsElevenFragment"
+            app:destination="@id/tipsElevenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tipsTwoFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsTwoFragment"
+        android:label="TipsTwoFragment" />
+    <fragment
+        android:id="@+id/tipsThreeFragment2"
+        android:name="com.cremwholesale.holdem.tips.TipsThreeFragment"
+        android:label="TipsThreeFragment" />
+    <fragment
+        android:id="@+id/tipsFourFragment2"
+        android:name="com.cremwholesale.holdem.tips.TipsFourFragment"
+        android:label="TipsFourFragment" />
+    <fragment
+        android:id="@+id/tipsFiveFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsFiveFragment"
+        android:label="TipsFiveFragment" />
+    <fragment
+        android:id="@+id/tipsSixFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsSixFragment"
+        android:label="TipsSixFragment" />
+    <fragment
+        android:id="@+id/tipsSevenFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsSevenFragment"
+        android:label="TipsSevenFragment" />
+    <fragment
+        android:id="@+id/tipsEightFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsEightFragment"
+        android:label="TipsEightFragment" />
+    <fragment
+        android:id="@+id/tipsNineFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsNineFragment"
+        android:label="TipsNineFragment" />
+    <fragment
+        android:id="@+id/tipsTenFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsTenFragment"
+        android:label="TipsTenFragment" />
+    <fragment
+        android:id="@+id/tipsElevenFragment"
+        android:name="com.cremwholesale.holdem.tips.TipsElevenFragment"
+        android:label="TipsElevenFragment" />
 </navigation>

@@ -1,21 +1,17 @@
-package com.cremwholesale.holdem
+package com.cremwholesale.holdem.welcome
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.cremwholesale.holdem.R
 import com.cremwholesale.holdem.databinding.FragmentFirstBinding
+import com.cremwholesale.holdem.databinding.FragmentOneBinding
 
-
-class FirstFragment : Fragment() {
-
-    private var _binding: FragmentFirstBinding? = null
+class OneFragment : Fragment() {
+    private var _binding: FragmentOneBinding? = null
 
     private val binding get() = _binding!!
 
@@ -24,7 +20,7 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentOneBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -32,20 +28,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.nextOdds.setOnClickListener {
-
+        binding.nextMain.setOnClickListener {
+            findNavController().navigate(R.id.action_oneFragment_to_twoFragment)
         }
-
-        binding.nextPlay.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-
-        }
-
-        binding.nextTips.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_tipsOneFragment)
-        }
-
-
 
 
     }

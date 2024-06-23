@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Poker Holdem - Begginer Tips</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Poker Holdem - Beginner Tips</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -7,40 +7,18 @@
     <string name="play">Play</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_1">There is a very steep learning curve in Poker. At the start a little information will take you a long way, but as you improve, the new information you learn won\'t add as much to your game.</string>
+    <string name="text_1_1" tools:ignore="Typos">So if you are a beginner poker player reading this article, this is probably the most useful and money-saving information you will ever read. If you absorb all of the beginner poker tips below, you may even turn from a losing player into a break-even or winning player. These beginner poker tips wont turn you into an expert player in ten minutes, but they will set you on the right track to becoming a winning poker player.</string>
+    <string name="text_2" tools:ignore="Typos">A very common mistake that amateur players make is not being selective enough with their starting hands. Dont fall into the common trap of thinking that any hand can win. Although this is true, some hands are more likely to win than others and will help you win more money, whilst others will help you in losing more money. So be selective about which hands you play.</string>
+    <string name="text_3" tools:ignore="Typos">Another common misconception about poker is that you need to bluff to win. You may see spectacular bluffs on the WSOP shows, but these are edited to show the highlights of the tournaments and so give the wrong impression of the frequency that top players bluff. Bluffing in poker is not as essential as you think it is. If you are a beginner online poker player, it is better to play your cards well rather than trying to bluff your opponents out of hands. It is good to try occasional bluffs here and there, but the real art of knowing when to bluff comes from knowledge and practice.</string>
+    <string name="text_4" tools:ignore="Typos">It is vitally important in poker to think about the strength of your opponents hand, and not just your own. It is nice to have a big hand, but if you think that your opponent has a better hand than you, you should prepare to fold. For example, a straight is a decent hand, but if there are four cards of the same suit on the board and your opponent pushes all in, do you still think you have the best hand?</string>
+    <string name="text_5" tools:ignore="Typos">This may seem obvious, but you will be surprised at the number of players who go against this simple principle. If you are better than the players who you are playing against, it makes sense that you will be a winner in the long run. If you were the 10th best player in the world, it would not be profitable to sit at a table with the top 9 players in the world.</string>
+    <string name="text_6" tools:ignore="Typos">Table position is a very important factor in poker, especially in Texas Holdem. The best positions to be in are when you are last to act on the hand, for example, when you are on the button. This means that you gain knowledge about what kind of hand they may have before the action gets to you. Having good position in a hand can easily turn a losing hand into a winning one. Position plays a much bigger role in no limit Texas Holdem than you think. It can often be more important than the cards themselves and make the difference between winning and losing a hand.</string>
+    <string name="text_7" tools:ignore="Typos">The best way to pick up tells is to watch your opponents and how they play in each pot. Even when you are not in the hand, you should still concentrate on the game to understand how your opponents play. Hopefully you will see what moves the players make when they dont have the best hand, and what moves they make when they do have the best hand. The more information you can get from your opponents, the better the opportunity you will have to beat them.</string>
+    <string name="text_8" tools:ignore="Typos">There are two reasons why you shouldnt play for too much money as a beginner. Firstly, the players at the higher limits will be better than the players at the lower limits. There is less chance that you will be able to beat them and you will spend a lot of money trying to learn the game in the process. Secondly, you only want to play at limits you can afford. You should not play at limits where you are going to drop money that you cannot afford to lose. There is more information on this subject in the bankroll management article. You may also find the Fergulator tool useful too.</string>
+    <string name="text_9" tools:ignore="Typos">You will often find yourself holding half a hand that only needs one card to complete your flush or your straight. As a general rule, if your opponent is betting heavily, it is unlikely to be profitable to chase after these draws. However, if there is only a small amount of betting it may be wise to call in the hope of making your hand. If the amount your opponent bets seems too big to warrant a call to make your hand, then dont.</string>
+    <string name="text_10" tools:ignore="Typos">The ultimate beginner mistake (that even some intermediate players make) is over-valuing suited cards. Flushes are not as common as you think, and if you limp in with your two small suited cards, there is the chance that you will lose all your money to a higher flush if the flush does come. Just because your cards are of the same suit, it only improves that hand by 2% compared to if your hand was not suited. This marginal improvement is too small to warrant calling pre-flop raises, so learn to fold the small suited cards. You will be saving yourself some money in the long run.</string>
+    <string name="text_11" tools:ignore="Typos">As obvious as it seems, there is no substitute for knowing the rules of the game. You dont want to find yourself calling a player all in, thinking that your straight beats his flush and losing all of your chips. There is no way you can be a winning poker player if you don\'t know the fundamental rules of the game. Furthermore, each card room and casino may have its own unique set of rules that you must abide by, so make sure you familiarize yourself with them before jumping into any game.</string>
 </resources>
